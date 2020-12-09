@@ -2,6 +2,7 @@ package me.rafahop.aoc;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 
 import me.rafahop.aoc.puzzle.Puzzle;
 
@@ -11,7 +12,7 @@ public class AdventOfCode {
     private static final boolean USE_SAMPLE = false;
     
     public static void main(String[] args) throws Exception {
-        int day = 8;
+        int day = LocalDateTime.now().getDayOfMonth(); // Change this to run a different puzzle
         Puzzle<?> p = getPuzzle(day);
         
         System.out.println("Part 1: " + p.part1());
