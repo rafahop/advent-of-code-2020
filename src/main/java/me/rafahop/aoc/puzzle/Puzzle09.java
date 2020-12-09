@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Puzzle09 implements Puzzle<Long> {
-    private static final int PREAMBLE_SIZE = 25;
+    private int preambleSize = 25;
 
     List<Long> data;
 
@@ -19,8 +19,8 @@ public class Puzzle09 implements Puzzle<Long> {
 
     @Override
     public Long part1() {
-        for (int i = PREAMBLE_SIZE; i < data.size(); i++) {
-            List<Long> preamble = data.subList(i-PREAMBLE_SIZE, i);
+        for (int i = preambleSize; i < data.size(); i++) {
+            List<Long> preamble = data.subList(i-preambleSize, i);
             Long value = data.get(i);
             if (!isValid(preamble, value) ) {
                 return value;
@@ -61,5 +61,9 @@ public class Puzzle09 implements Puzzle<Long> {
                                 }
                             }, 
                 (a,b) -> Stream.of(a, b).flatMap(List::stream).collect(Collectors.toList()));
+    }
+    
+    public void setPreambleSize(int preambleSize) {
+        this.preambleSize = preambleSize;
     }
 }
