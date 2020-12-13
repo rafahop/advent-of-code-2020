@@ -4,7 +4,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class Puzzle05Test {
+public class Puzzle05Test extends PuzzleTest<Integer> {
+
+    @Override
+    int getDay() {
+        return 5;
+    }
+
+    @Override
+    Integer expectedPart1() {
+        return 820;
+    }
+
+    @Override
+    Integer expectedPart2() {
+        return 120;
+    }
     
     @Test
     void testBoardingCard0() {
