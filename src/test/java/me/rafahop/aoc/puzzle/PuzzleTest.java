@@ -18,13 +18,19 @@ public abstract class PuzzleTest<T> {
     abstract T expectedPart2();
     
     Puzzle<T> getPuzzle() throws Exception {
-        String dayString = String.format("%02d", getDay());
-        Path file = getInput(dayString);
-        Puzzle<T> puzzle = (Puzzle<T>) Class.forName(getClassName(dayString)).getDeclaredConstructor().newInstance();
+        Path file = getInput(getDayString());
+        Puzzle<T> puzzle = (Puzzle<T>) constructPuzzle();
         puzzle.init(file);
         return puzzle;
     }
     
+    Puzzle<T> constructPuzzle() throws Exception {
+        return (Puzzle<T>) Class.forName(getClassName(getDayString())).getDeclaredConstructor().newInstance();
+    }
+    
+    private String getDayString() {
+        return String.format("%02d", getDay());
+    }
     
     @Test
     void part1() throws Exception {
