@@ -8,8 +8,8 @@ public class Puzzle09Test extends PuzzleTest<Long> {
     }
     
     @Override
-    Puzzle<Long> getPuzzle() throws Exception {
-        Puzzle09 puzzle = (Puzzle09) super.getPuzzle();
+    Puzzle<Long> getPuzzle(String filename) throws Exception {
+        Puzzle09 puzzle = (Puzzle09) super.getPuzzle(filename);
         // Override preamble for test data
         puzzle.setPreambleSize(5);
         return puzzle;

@@ -17,10 +17,9 @@ public abstract class PuzzleTest<T> {
     
     abstract T expectedPart2();
     
-    Puzzle<T> getPuzzle() throws Exception {
-        Path file = getInput(getDayString());
+    Puzzle<T> getPuzzle(String filename) throws Exception {
         Puzzle<T> puzzle = (Puzzle<T>) constructPuzzle();
-        puzzle.init(file);
+        puzzle.init(getInput(filename));
         return puzzle;
     }
     
@@ -34,20 +33,29 @@ public abstract class PuzzleTest<T> {
     
     @Test
     void part1() throws Exception {
-        assertEquals(expectedPart1(), getPuzzle().part1());
+        assertEquals(expectedPart1(), getPuzzle(getInputPart1()).part1());
     }
     
     @Test
     void part2() throws Exception {
-        assertEquals(expectedPart2(), getPuzzle().part2());
+        assertEquals(expectedPart2(), getPuzzle(getInputPart2()).part2());
+    }
+    
+    
+    String getInputPart1() {
+        return "sample.txt";
+    }
+    
+    String getInputPart2() {
+        return "sample.txt";
     }
     
     private static String getClassName(String day) {
         return PUZZLES_PACKAGE + "." + PUZZLE_PREFIX + day;
     }
 
-    private static Path getInput(String dayString) {
-        String fileName = dayString + "/sample.txt";
+    private Path getInput(String filename) {
+        String fileName = getDayString() + "/" + filename;
         return Paths.get(PuzzleTest.class.getClassLoader().getResource(fileName).getPath());
     }
 }
